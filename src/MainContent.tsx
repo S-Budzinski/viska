@@ -1,39 +1,40 @@
 import React from 'react';
+import './App.css';
+import WorldMapIcon from './WorldMapIcon'
 
 const MainContent: React.FC = () => {
   return (
-    <div className="relative h-screen bg-gradient-to-b from-darkblue to-black">
-      <div className="absolute top-1/4 left-1/4 text-white">
+    <div className="flex h-screen background">
+      <WorldMapIcon />
+      <div className="relative ml-40 mt-48 text-slate-200">
         <h1 className="text-6xl font-bold leading-tight">
-          Let yourself<br />
-          g<span className="text-lightblue">AI</span>n<br />
-          knowledge
+            Let yourself<br />
+            g<span className="text-blue-400">AI</span>n<br />
+            knowledge
         </h1>
-        <p className="mt-4 text-lg">
-          <strong>ANKOTES</strong> can provide you pure facts based on <strong>your notes</strong> enhanced by AI
+        <p className="mt-4 text-lg text-slate-400">
+          <strong>Viska</strong> can provide you pure facts based on <strong>your notes</strong> enhanced by AI
         </p>
         <div className="mt-6">
           <button className="bg-teal py-2 px-4 rounded mr-4">Sign in</button>
           <button className="bg-transparent border border-white py-2 px-4 rounded">Learn more</button>
         </div>
       </div>
-      <div className="absolute top-[60%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 space-y-6">
-        <div className="relative p-4 bg-red-500 text-white rounded-md shadow-lg">
+        <div className="absolute right-[35%] bottom-[20%] p-4 border-2 bg-slate-600 border-lightblue text-white rounded-md shadow-lg">
           <h3 className="font-bold">World Hunger - AI enhanced</h3>
           <p>"Facts created by AI are helpful"</p>
-          <div className="absolute inset-0 bg-red-500 opacity-30 rounded-md blur-lg"></div>
+          <div className="absolute inset-0 bg-lightblue opacity-100 rounded-md blur-xl z-[-1]"></div>
         </div>
-        <div className="relative p-4 bg-lightblue text-white rounded-md shadow-lg">
+        <div className="absolute right-[20%] bottom-[40%] p-4 border-2 bg-slate-600 border-red text-white rounded-md shadow-lg">
           <h3 className="font-bold">Nuclear Power - Flashcards</h3>
           <p>"It really helped me understand"</p>
-          <div className="absolute inset-0 bg-lightblue opacity-30 rounded-md blur-lg"></div>
+          <div className="absolute inset-0 bg-red opacity-100 rounded-md blur-xl z-[-1]"></div>
         </div>
-        <div className="relative p-4 bg-green-500 text-white rounded-md shadow-lg">
+        <div className="absolute right-[10%] bottom-[10%] p-4 border-2 bg-slate-600 border-green text-white rounded-md shadow-lg">
           <h3 className="font-bold">Ancient Philosophy - Quiz</h3>
           <p>"Having fun while learning"</p>
-          <div className="absolute inset-0 bg-green-500 opacity-30 rounded-md blur-lg"></div>
+          <div className="absolute inset-0 bg-green opacity-100 rounded-md blur-xl z-[-1]"></div>
         </div>
-      </div>
     </div>
   );
 };

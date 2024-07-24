@@ -4,6 +4,7 @@
 
 body {
   @apply bg-gradient-to-b from-darkblue to-black;
+  overflow: hidden;
 }
 
 .blur-lg {

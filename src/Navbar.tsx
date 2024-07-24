@@ -3,7 +3,7 @@ import React from 'react';
 const Navbar: React.FC = () => {
   return (
     <nav className="flex justify-between items-center p-4 text-white">
-      <div className="text-lg font-bold">ANKOTES</div>
+      <div className="text-lg font-bold">Viska</div>
       <div className="flex space-x-6">
         <a href="#" className="hover:underline">Flashcards</a>
         <a href="#" className="hover:underline">Notes</a>
