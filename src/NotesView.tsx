@@ -1,6 +1,7 @@
 // src/components/NotesView.tsx
 import React, { useState, useRef, useEffect } from 'react';
 import StudyingView from './StudyingView';
+import { useNavigate } from 'react-router-dom';
 
 const NotesView: React.FC = () => {
   const [notes, setNotes] = useState<string[]>([
@@ -29,6 +30,12 @@ const NotesView: React.FC = () => {
       notesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [notes]);
+
+  const navigate = useNavigate();
+
+  const handleBackToMain = () => {
+    navigate('/');
+  };
 
   const addNote = () => {
     setShowPopup(true);
@@ -76,7 +83,7 @@ const NotesView: React.FC = () => {
   return (
     <div className="flex h-screen bg-gradient-to-b from-blue-900 to-gray-900 text-white">
       <div className="w-1/5 bg-blue-800 p-4">
-        <h2 className="text-lg font-semibold mb-4">ANKOTES</h2>
+        <h2 className="text-lg font-semibold mb-4 pointer" onClick={handleBackToMain}>Viska</h2>
         <div className="p-2 bg-blue-700 rounded-md mb-2">ChumanistaLech</div>
       </div>
       {view === 'notes' ? (

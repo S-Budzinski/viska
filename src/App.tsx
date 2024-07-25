@@ -1,16 +1,18 @@
+// App.tsx
 import React from 'react';
-import Navbar from './Navbar';
-import MainContent from './MainContent';
-import './index.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Layout from './Layout';
 import NotesView from './NotesView';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <Navbar />
-      <MainContent />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}/>
+        <Route path="notes" element={<NotesView />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

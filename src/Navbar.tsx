@@ -1,9 +1,10 @@
 // Navbar.tsx
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -20,7 +21,7 @@ const Navbar: React.FC = () => {
         </div>
         <button
           className="border border-white py-1 px-4 rounded hidden md:block hover:bg-gray-700"
-          onClick={() => window.location.href = '/NotesView'}
+          onClick={() => navigate('/notes')}
         >
           Enter App
         </button>
@@ -41,7 +42,7 @@ const Navbar: React.FC = () => {
           <a href="#" className="hover:underline">About Us</a>
           <button
             className="border border-white py-1 px-4 rounded hover:bg-gray-700 mt-2"
-            onClick={() => window.location.href = '/NotesView'}
+            onClick={() => navigate('/notes')}
           >
             Enter App
           </button>

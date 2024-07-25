@@ -8,7 +8,7 @@ const MainContent: React.FC = () => {
   return (
     <div className="flex flex-col md:flex-row h-screen background">
       <WorldMapIcon/>
-      <div className="flex flex-col z-10 px-4 md:ml-40 md:mt-48 text-slate-200">
+      <div className="flex flex-col z-10 px-4 md:ml-40 mt-32 mx-12 md:mx-0 md:mt-40 text-slate-200">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight">
           Let yourself<br />
           g<span className="text-blue-400">AI</span>n<br />
