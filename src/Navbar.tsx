@@ -12,15 +12,15 @@ const Navbar: React.FC = () => {
     <nav className="bg-gray-800 p-4 text-white bg-transparent">
       <div className="flex justify-between items-center">
         <div className="text-lg font-bold">Viska</div>
-        <div className="hidden md:flex space-x-6">
-          <a href="#" className="hover:underline">Flashcards</a>
-          <a href="#" className="hover:underline">Notes</a>
-          <a href="#" className="hover:underline">Quiz</a>
-          <a href="#" className="hover:underline">Community</a>
-          <a href="#" className="hover:underline">About Us</a>
+        <div className="hidden md:flex space-x-6 text-slate-300">
+          <a href="#" className="hover:underline hover:decoration-sky-500 hover:font-bold hover:text-lg transition-all duration-300">Flashcards</a>
+          <a href="#" className="hover:underline hover:decoration-sky-500 hover:font-bold hover:text-lg transition-all duration-300">Notes</a>
+          <a href="#" className="hover:underline hover:decoration-sky-500 hover:font-bold hover:text-lg transition-all duration-300">Quiz</a>
+          <a href="#" className="hover:underline hover:decoration-sky-500 hover:font-bold hover:text-lg transition-all duration-300">Community</a>
+          <a href="#" className="hover:underline hover:decoration-sky-500 hover:font-bold hover:text-lg transition-all duration-300">About Us</a>
         </div>
         <button
-          className="border border-white py-1 px-4 rounded hidden md:block hover:bg-gray-700"
+          className="border border-teal-900 py-1 px-4 rounded hidden md:block hover:bg-teal-600 transition-color duration-500"
           onClick={() => navigate('/notes')}
         >
           Enter App
@@ -35,13 +35,13 @@ const Navbar: React.FC = () => {
       </div>
       {isOpen && (
         <div className="md:hidden mt-4 flex flex-col space-y-4 items-center">
-          <a href="#" className="hover:underline">Flashcards</a>
-          <a href="#" className="hover:underline">Notes</a>
-          <a href="#" className="hover:underline">Quiz</a>
-          <a href="#" className="hover:underline">Community</a>
-          <a href="#" className="hover:underline">About Us</a>
+          <a href="#" className="hover:underline hover:decoration-sky-500 hover:font-bold hover:text-lg transition-all duration-300">Flashcards</a>
+          <a href="#" className="hover:underline hover:decoration-sky-500 hover:font-bold hover:text-lg transition-all duration-300">Notes</a>
+          <a href="#" className="hover:underline hover:decoration-sky-500 hover:font-bold hover:text-lg transition-all duration-300">Quiz</a>
+          <a href="#" className="hover:underline hover:decoration-sky-500 hover:font-bold hover:text-lg transition-all duration-300">Community</a>
+          <a href="#" className="hover:underline hover:decoration-sky-500 hover:font-bold hover:text-lg transition-all duration-300">About Us</a>
           <button
-            className="border border-white py-1 px-4 rounded hover:bg-gray-700 mt-2"
+            className="border border-teal-600 font-thin py-1 px-4 rounded hover:bg-gray-700 mt-2"
             onClick={() => navigate('/notes')}
           >
             Enter App

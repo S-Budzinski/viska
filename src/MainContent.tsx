@@ -8,20 +8,20 @@ const MainContent: React.FC = () => {
   return (
     <div className="flex flex-col md:flex-row h-screen background">
       <WorldMapIcon/>
-      <div className="flex flex-col z-10 px-4 md:ml-40 mt-32 mx-12 md:mx-0 md:mt-40 text-slate-200">
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+      <div className="flex flex-col z-10 px-4 md:ml-40 mt-32 mx-12 md:mx-0 md:mt-40 text-slate-300">
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight ">
           Let yourself<br />
-          g<span className="text-blue-400">AI</span>n<br />
+          g<span className="bg-gradient-to-b from-sky-500 to-fuchsia-600 bg-clip-text text-transparent">AI</span>n<br />
           knowledge
         </h1>
         <p className="mt-4 text-base md:text-lg text-slate-400">
-          <strong>Viska</strong> can provide you pure facts based on <strong>your notes</strong> enhanced by AI
+          <strong>Viska</strong> can provide you pure facts based on <strong className='underline decoration-sky-500 text-slate-200'>your notes</strong> enhanced by AI
         </p>
-        <div className="mt-6 flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
-          <button className="bg-teal-500 text-white py-2 px-4 rounded hover:bg-teal-600">
+        <div className=" flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mt-10">
+          <button className="bg-teal-600 px-10 text-slate-200 font-semibold py-2 text-lg rounded-sm hover:bg-teal-800 transition-colors duration-500">
             Sign in
           </button>
-          <button className="bg-transparent border border-white py-2 px-4 rounded hover:bg-gray-700">
+          <button className="bg-transparent border text-lg font-thin border-white py-2 px-4 rounded hover:bg-gray-700 transition-colors duration-500">
             Learn more
           </button>
         </div>

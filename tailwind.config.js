@@ -8,7 +8,6 @@ module.exports = {
       colors: {
         darkblue: '#0A122A',
         lightblue: '#3b82f6',
-        teal: '#14b8a6',
         red: '#ef4444',
         green: '#22c55e',
         // Add other colors as needed
@@ -19,5 +18,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    
+  ],
 }
