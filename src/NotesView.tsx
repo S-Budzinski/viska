@@ -91,83 +91,89 @@ const NotesView: React.FC = () => {
           <h2 className="text-4xl mb-6 font-thin p-5 ">Notes</h2>
           <div className="flex-1 overflow-y-auto mb-20 pr-10">
             <div className="grid grid-cols-3 gap-20">
-              {/* single note view */}
+              {/* Single note view */}
               {notes.map((note) => (
+                <div
+                  key={note}
+                  className="relative flex flex-col items-center w-full max-w-64"
+                  onClick={() => setSelectedNote(note)}
+                >
                   <div
-                    key={note}
-                    className="relative flex flex-col items-center"
-                    onClick={() => setSelectedNote(note)}
+                    className={`bg-teal-900 p-4 h-72 w-full rounded-md shadow-md flex items-center justify-center cursor-pointer ${
+                      selectedNote === note ? 'border-4 border-blue-500 transition-colors duration-500' : ''
+                    }`}
                   >
-                    <div
-                      className={`bg-slate-500/40 p-4 h-40 w-full rounded-md shadow-md flex items-center justify-center cursor-pointer ${
-                        selectedNote === note ? 'border-4 border-blue-500' : ''
-                      }`}
-                    >
-                      {/* This is the note tile content */}
-                      <div className="w-full h-full flex items-center justify-center"></div>
-                      {/* Edit and delete menu, positioned absolutely at the bottom-right of the tile */}
-                      {openMenu === note && (
-                        <div className="absolute bottom-0 right-0 mb-4 mr-4 bg-gray-700 p-2 rounded shadow-md z-10">
-                          <button
-                            className="text-white mb-2 block w-full text-left"
-                            onClick={() => startEditingNote(note)}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            className="text-white block w-full text-left"
-                            onClick={() => deleteNote(note)}
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                    {/* Note title below the tile */}
-                    <div className="mt-2 flex items-center justify-between w-full font-thin text-lg">
-                      {editingNote === note ? (
-                        <input
-                          type="text"
-                          value={newTitle}
-                          onChange={(e) => setNewTitle(e.target.value)}
-                          onKeyDown={handleKeyDown}
-                          className="bg-gray-700 p-2 rounded text-center flex-grow"
-                        />
-                      ) : (
-                        <>
-                          <span className="mr-2">{note}</span>
-                          <button
-                            className="relative"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setOpenMenu(openMenu === note ? null : note);
-                            }}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-white"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path d="M6 10a1 1 0 100-2 1 1 0 000 2zm4-1a1 1 0 110 2 1 1 0 010-2zm4 1a1 1 0 100-2 1 1 0 000 2z" />
-                            </svg>
-                          </button>
-                        </>
-                      )}
-                    </div>
+                    {/* Note tile content */}
+                    <div className="w-full h-full flex items-center justify-center"></div>
+                    {openMenu === note && (
+                      <div className="absolute bottom-0 right-0 mb-4 mr-4 bg-gray-700 p-2 rounded shadow-md z-10">
+                        <button
+                          className="text-white mb-2 block w-full text-left"
+                          onClick={() => startEditingNote(note)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="text-white block w-full text-left"
+                          onClick={() => deleteNote(note)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )}
                   </div>
-                ))}
+                  {/* Note title below the tile */}
+                  <div className="mt-2 w-full"> {/* Full width container for the title */}
+                    {editingNote === note ? (
+                      <input
+                        type="text"
+                        value={newTitle}
+                        onChange={(e) => setNewTitle(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        className="bg-gray-700 p-2 rounded w-full text-center" // Full width input
+                      />
+                    ) : (
+                      <div className="flex items-center justify-between w-full">
+                        <span className="flex-grow text-left font-thin">{note}</span> {/* Full width title */}
+                        <button
+                          className="relative"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setOpenMenu(openMenu === note ? null : note);
+                          }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5 text-white"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path d="M6 10a1 1 0 100-2 1 1 0 000 2zm4-1a1 1 0 110 2 1 1 0 010-2zm4 1a1 1 0 100-2 1 1 0 000 2z" />
+                          </svg>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
 
-
+              {/* Add Note tile with the same styling as note tiles */}
               <div
-                className="bg-gray-700 p-4 rounded-md shadow-md flex items-center justify-center cursor-pointer h-40"
+                className="relative flex flex-col items-center w-full max-w-64"
                 onClick={addNote}
               >
-                +
+                <div
+                  className="bg-gray-800 p-4 h-72 w-full rounded-md shadow-md flex items-center justify-center cursor-pointer hover:bg-gray-700 transition-colors"
+                >
+                  <span className="text-white text-3xl font-semibold">+</span>
+                </div>
               </div>
+
+              {/* Spacer for scrolling */}
               <div ref={notesEndRef} />
             </div>
           </div>
+
           <div className="fixed bottom-0 left-1/5 right-0 bg-opacity-50 p-4 px-20">
             <button
               className="border border-teal-600 text-lg font-medium py-1 rounded px-10 hover:bg-teal-500 mt-2 transition-colors duration-300"
