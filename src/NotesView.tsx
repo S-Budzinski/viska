@@ -83,13 +83,22 @@ const NotesView: React.FC = () => {
   return (
     <div className="flex h-screen bg-gradient-to-tr from-teal-900 via-gray-800 to-gray-900 text-white">
       <div className="w-1/5 bg-white/10 p-4">
-        <h2 className="text-lg font-semibold mb-4 pointer" onClick={handleBackToMain}>Viska</h2>
-        <div className="p-2 rounded-md mb-2">ChumanistaLech</div>
+        <h2 className="text-lg font-semibold mb-5 pointer" onClick={handleBackToMain}>Viska</h2>
+        <div className='w-full h-0.5 bg-slate-400 '></div>
+        <div className='flex items-center space-x-20 pt-4'>
+          <div className='w-6 h-6 bg-slate-300 rounded-sm'></div>
+          <div className="ml-2 text-lg">ChumanistaLech</div>
+        </div>
+
       </div>
       {view === 'notes' ? (
-        <div className="flex-1 p-8 flex flex-col relative overflow-hidden">
-          <h2 className="text-4xl mb-6 font-thin p-5 ">Notes</h2>
-          <div className="flex-1 overflow-y-auto mb-20 pr-10">
+        <div className="flex-1 p-8 flex flex-col relative overflow-hidden -mt-4">
+          <div className='flex items-center'>
+            <div className='w-full h-0.5 bg-slate-400'></div>
+            <h2 className="text-4xl mb-6 font-thin p-5 ">Notes</h2>
+            <div className='w-full h-0.5 bg-slate-400'></div>
+          </div>
+          <div className="flex-1 overflow-y-auto mb-10 pr-10">
             <div className="grid grid-cols-3 gap-20">
               {/* Single note view */}
               {notes.map((note) => (
@@ -99,7 +108,7 @@ const NotesView: React.FC = () => {
                   onClick={() => setSelectedNote(note)}
                 >
                   <div
-                    className={`bg-teal-900 p-4 h-72 w-full rounded-md shadow-md flex items-center justify-center cursor-pointer ${
+                    className={`bg-teal-900/30 p-4 h-72 w-full rounded-md shadow-md flex items-center justify-center cursor-pointer ${
                       selectedNote === note ? 'border-4 border-blue-500 transition-colors duration-500' : ''
                     }`}
                   >
