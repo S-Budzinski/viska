@@ -1,9 +1,9 @@
 // src/components/NotesView.tsx
 import React, { useState, useRef, useEffect } from 'react';
-import StudyingView from './StudyingView';
 import { useNavigate } from 'react-router-dom';
 import TitleWithLines from './TitleWithLines';
 import NavbarNotes from './NavbarNotes';
+import StudyingView from './StudyingView';
 
 const NotesView: React.FC = () => {
   const [notes, setNotes] = useState<string[]>([
@@ -13,27 +13,26 @@ const NotesView: React.FC = () => {
     'Universe',
     'Trains'
   ]);
-  
-  const [noteTitle, setNoteTitle] = useState<string>('')
+
+  const [noteTitle, setNoteTitle] = useState<string>('');
 
   const [editingNote, setEditingNote] = useState<string | null>(null);
   const [newTitle, setNewTitle] = useState<string>('');
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [showPopup, setShowPopup] = useState<boolean>(false);
-  const [popupStep, setPopupStep] = useState<number>(1);;
+  const [popupStep, setPopupStep] = useState<number>(1);
   const [error, setError] = useState<string>('');
   const [selectedNote, setSelectedNote] = useState<string | null>(null);
   const [view, setView] = useState<'notes' | 'studying'>('notes');
 
   const notesEndRef = useRef<HTMLDivElement | null>(null);
+  const navigate = useNavigate();  // Use React Router for navigation
 
   useEffect(() => {
     if (notesEndRef.current) {
       notesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [notes]);
-
-  const navigate = useNavigate();
 
   const handleBackToMain = () => {
     navigate('/');
@@ -59,10 +58,16 @@ const NotesView: React.FC = () => {
     setNotes(notes.filter(note => note !== noteToDelete));
   };
 
+  // Navigate to the EditNotes component
   const startEditingNote = (note: string) => {
-    setEditingNote(note);
-    setNewTitle(note);
-    setOpenMenu(null);
+    navigate(`/edit/${note}`, {
+      state: {
+        notes, // Pass notes as state
+        handleEditNote: (oldTitle: string, newTitle: string) => {
+          setNotes(notes.map(n => n === oldTitle ? newTitle : n)); // Update note title logic
+        }
+      }
+    });
   };
 
   const saveEditedNote = () => {
@@ -76,6 +81,10 @@ const NotesView: React.FC = () => {
     }
   };
 
+  const handleEditNote = (oldTitle: string, newTitle: string) => {
+    setNotes(notes.map(note => note === oldTitle ? newTitle : note));
+  };
+
   const startStudying = () => {
     if (selectedNote) {
       setView('studying');
@@ -84,7 +93,7 @@ const NotesView: React.FC = () => {
 
   return (
     <div className="flex h-screen bg-gradient-to-tr from-teal-900 via-gray-800 to-gray-900 text-white">
-      <NavbarNotes handleBackToMain={handleBackToMain}/>
+      <NavbarNotes handleBackToMain={handleBackToMain} />
       {view === 'notes' ? (
         <div className="flex-1 p-8 flex flex-col relative overflow-hidden -mt-4">
           <TitleWithLines name="Notes" />
@@ -102,13 +111,12 @@ const NotesView: React.FC = () => {
                       selectedNote === note ? 'border-4 border-blue-500 transition-colors duration-500' : ''
                     }`}
                   >
-                    {/* Note tile content */}
                     <div className="w-full h-full flex items-center justify-center"></div>
                     {openMenu === note && (
                       <div className="absolute bottom-0 right-0 mb-4 mr-4 bg-gray-700 p-2 rounded shadow-md z-10">
                         <button
                           className="text-white mb-2 block w-full text-left"
-                          onClick={() => startEditingNote(note)}
+                          onClick={() => startEditingNote(note)}  // Start editing note by navigating to edit view
                         >
                           Edit
                         </button>
@@ -123,35 +131,25 @@ const NotesView: React.FC = () => {
                   </div>
                   {/* Note title below the tile */}
                   <div className="mt-2 w-full"> {/* Full width container for the title */}
-                    {editingNote === note ? (
-                      <input
-                        type="text"
-                        value={newTitle}
-                        onChange={(e) => setNewTitle(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        className="bg-gray-700 p-2 rounded w-full text-center" // Full width input
-                      />
-                    ) : (
-                      <div className="flex items-center justify-between w-full">
-                        <span className="flex-grow text-left font-thin">{note}</span> {/* Full width title */}
-                        <button
-                          className="relative"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setOpenMenu(openMenu === note ? null : note);
-                          }}
+                    <div className="flex items-center justify-between w-full">
+                      <span className="flex-grow text-left font-thin">{note}</span> {/* Full width title */}
+                      <button
+                        className="relative"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setOpenMenu(openMenu === note ? null : note);
+                        }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5 text-white"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
                         >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5 text-white"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path d="M6 10a1 1 0 100-2 1 1 0 000 2zm4-1a1 1 0 110 2 1 1 0 010-2zm4 1a1 1 0 100-2 1 1 0 000 2z" />
-                          </svg>
-                        </button>
-                      </div>
-                    )}
+                          <path d="M6 10a1 1 0 100-2 1 1 0 000 2zm4-1a1 1 0 110 2 1 1 0 010-2zm4 1a1 1 0 100-2 1 1 0 000 2z" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
